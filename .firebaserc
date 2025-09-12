@@ -1,0 +1,13 @@
+{
+  "projects": {},
+  "targets": {
+    "guava-2dd45": {
+      "hosting": {
+        "kol-ai": [
+          "guava-2dd45-kol-ai"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
