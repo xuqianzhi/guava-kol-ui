@@ -67,6 +67,12 @@ export interface Translations {
     dish: string;
     submitting: string;
     submitReviews: string;
+
+    // Generation language selector
+    generationLanguage: string;
+    selectGenerationLanguage: string;
+    english: string;
+    chinese: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -137,7 +143,13 @@ const translations: Record<Language, Translations> = {
         // Dish accordion
         dish: 'Dish',
         submitting: 'Submitting...',
-        submitReviews: 'Submit Reviews'
+        submitReviews: 'Submit Reviews',
+
+        // Generation language selector
+        generationLanguage: 'Post Language',
+        selectGenerationLanguage: 'Select the language for your generated post',
+        english: 'English',
+        chinese: 'Chinese'
     },
 
     [Language.CHINESE]: {
@@ -205,7 +217,13 @@ const translations: Record<Language, Translations> = {
         // Dish accordion
         dish: '菜品',
         submitting: '提交中...',
-        submitReviews: '提交评价'
+        submitReviews: '提交评价',
+
+        // Generation language selector
+        generationLanguage: '帖子语言',
+        selectGenerationLanguage: '选择生成帖子的语言',
+        english: '英语',
+        chinese: '中文'
     }
 };
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import { Spinner } from '@/common/components';
 import { API_BASE_URL, GetMerchantsResponse, Language, SocialMediaPostResponse } from '@/common/constants';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/registry/new-york-v4/ui/accordion';
@@ -39,7 +40,9 @@ const MerchantSelected: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [socialMediaPostResponse, setSocialMediaPostResponse] = useState<SocialMediaPostResponse | null>(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [copyNotification, setCopyNotification] = useState(false);
+    const [generationLanguage, setGenerationLanguage] = useState<Language>(Language.ENGLISH); // New state for generation language
 
     // Meal experience state - single dict
     const [mealExperience, setMealExperience] = useState<{ [key: string]: string }>(initializeMealExperience());
@@ -192,10 +195,10 @@ const MerchantSelected: React.FC = () => {
         }
 
         // Prepare the data for the API call
-        // Transform dining experience values to the current language
+        // Transform dining experience values to the generation language
         const transformedDiningExperience: { [key: string]: string } = {};
         Object.entries(mealExperience).forEach(([questionKey, englishValue]) => {
-            if (englishValue && language === Language.CHINESE) {
+            if (englishValue && generationLanguage === Language.CHINESE) {
                 // Convert English value to Chinese using meal options mapping
                 const chineseValue = mealOptions[questionKey]?.[englishValue];
                 transformedDiningExperience[questionKey] = chineseValue || englishValue;
@@ -216,17 +219,15 @@ const MerchantSelected: React.FC = () => {
 
         try {
             // Show loading state
-            const originalButton = document.querySelector('[data-submit-button]') as HTMLButtonElement;
-            if (originalButton) {
-                originalButton.textContent = t.submitting;
-                originalButton.disabled = true;
-            }
+            setIsSubmitting(true);
 
             console.log('Submitting data:', requestBody);
 
-            // Make the POST request to the appropriate endpoint based on language
+            // Make the POST request to the appropriate endpoint based on generation language
             const endpoint =
-                language === Language.CHINESE ? 'generate_chinese_social_media_post' : 'generate_social_media_post';
+                generationLanguage === Language.CHINESE
+                    ? 'generate_chinese_social_media_post'
+                    : 'generate_social_media_post';
             const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
                 method: 'POST',
                 headers: {
@@ -241,8 +242,13 @@ const MerchantSelected: React.FC = () => {
                 setSocialMediaPostResponse(result);
                 setIsSubmitted(true);
 
-                alert(`${t.successfullyGenerated} (${result.character_count} ${t.characters})`);
-                console.log('API response:', result);
+                // Auto-scroll to bottom after the post is generated
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: document.documentElement.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             } else {
                 alert(t.errorGenerating);
                 console.error('API error:', result);
@@ -251,17 +257,13 @@ const MerchantSelected: React.FC = () => {
             alert(t.errorSubmitting);
             console.error('Network error:', error);
         } finally {
-            // Reset button state
-            const originalButton = document.querySelector('[data-submit-button]') as HTMLButtonElement;
-            if (originalButton) {
-                originalButton.textContent = t.submitReviews;
-                originalButton.disabled = false;
-            }
+            // Reset loading state
+            setIsSubmitting(false);
         }
     };
 
     return (
-        <main className='mx-auto mt-6 flex max-w-7xl flex-col justify-center gap-3 px-3 font-[family-name:var(--font-geist-sans)] sm:mt-3 sm:gap-6 sm:px-0'>
+        <main className='mx-auto mt-6 flex max-w-7xl flex-col justify-center gap-3 px-3 pb-8 font-[family-name:var(--font-geist-sans)] sm:mt-3 sm:gap-6 sm:px-0 sm:pb-12'>
             {/* Header with Back Button and Title */}
             <div className='flex w-full items-center justify-between'>
                 <Link href='/'>
@@ -286,7 +288,7 @@ const MerchantSelected: React.FC = () => {
             {loading && (
                 <Card className='w-full'>
                     <CardContent className='p-8 text-center'>
-                        <p>{t.loadingMerchant}</p>
+                        <Spinner size='lg' text={t.loadingMerchant} />
                     </CardContent>
                 </Card>
             )}
@@ -454,15 +456,40 @@ const MerchantSelected: React.FC = () => {
                         {/* Separator */}
                         <hr className='border-t border-gray-200' />
 
+                        {/* Generation Language Selector */}
+                        <div className='space-y-3'>
+                            <Label className='text-lg font-semibold'>
+                                {t.generationLanguage} <span className='text-red-500'>{t.required}</span>
+                            </Label>
+                            <p className='text-sm text-gray-600'>{t.selectGenerationLanguage}</p>
+                            <div className='flex flex-wrap gap-2'>
+                                <Badge
+                                    variant={generationLanguage === Language.ENGLISH ? 'default' : 'outline'}
+                                    className='cursor-pointer px-3 py-2 text-sm hover:bg-gray-100'
+                                    onClick={() => setGenerationLanguage(Language.ENGLISH)}>
+                                    {t.english}
+                                </Badge>
+                                <Badge
+                                    variant={generationLanguage === Language.CHINESE ? 'default' : 'outline'}
+                                    className='cursor-pointer px-3 py-2 text-sm hover:bg-gray-100'
+                                    onClick={() => setGenerationLanguage(Language.CHINESE)}>
+                                    {t.chinese}
+                                </Badge>
+                            </div>
+                        </div>
+
                         <div className='pt-4'>
-                            <Button
-                                onClick={handleSubmit}
-                                className='w-full border-0 !bg-green-600 text-white hover:!bg-green-700 disabled:cursor-not-allowed disabled:opacity-50'
-                                variant='default'
-                                data-submit-button
-                                disabled={isSubmitted}>
-                                {isSubmitted ? t.postGenerated : t.generatePost}
-                            </Button>
+                            <div className='space-y-3'>
+                                {isSubmitting && <Spinner size='md' text={t.submitting} />}
+                                <Button
+                                    onClick={handleSubmit}
+                                    className='w-full border-0 !bg-green-600 text-white hover:!bg-green-700 disabled:cursor-not-allowed disabled:opacity-50'
+                                    variant='default'
+                                    data-submit-button
+                                    disabled={isSubmitted || isSubmitting}>
+                                    {isSubmitted ? t.postGenerated : t.generatePost}
+                                </Button>
+                            </div>
                         </div>
 
                         {/* Social Media Post Display */}

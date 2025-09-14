@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
+import { Spinner } from '@/common/components';
 import { API_BASE_URL, GetMerchantsResponse, MerchantIndustry } from '@/common/constants';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Badge } from '@/registry/new-york-v4/ui/badge';
@@ -59,7 +60,7 @@ const MerchantList: React.FC = () => {
             <main className='mx-auto mt-6 flex max-w-7xl flex-col justify-center gap-6 px-3 font-[family-name:var(--font-geist-sans)] sm:mt-3 sm:gap-12 sm:px-0'>
                 <Card className='w-full'>
                     <CardContent className='p-8 text-center'>
-                        <p>{t.loadingMerchant}</p>
+                        <Spinner size='lg' text={t.loadingMerchant} />
                     </CardContent>
                 </Card>
             </main>
