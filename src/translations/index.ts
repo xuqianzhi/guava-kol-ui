@@ -71,8 +71,8 @@ export interface Translations {
     // Generation language selector
     generationLanguage: string;
     selectGenerationLanguage: string;
-    english: string;
-    chinese: string;
+    generateInEnglish: string;
+    generateInChinese: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -148,15 +148,15 @@ const translations: Record<Language, Translations> = {
         // Generation language selector
         generationLanguage: 'Post Language',
         selectGenerationLanguage: 'Select the language for your generated post',
-        english: 'English',
-        chinese: 'Chinese'
+        generateInEnglish: 'Generate in English',
+        generateInChinese: 'Generate in Chinese'
     },
 
     [Language.CHINESE]: {
         // Page titles and descriptions
-        offerTitle: '送',
+        offerTitle: '给',
         reviewsDescription: 'Guava AI帮您小小点击就能获得大大文案',
-        aPost: '一篇帖子',
+        aPost: '写一篇帖子',
 
         // Loading and error states
         loadingMerchant: '正在加载商家信息...',
@@ -222,8 +222,8 @@ const translations: Record<Language, Translations> = {
         // Generation language selector
         generationLanguage: '帖子语言',
         selectGenerationLanguage: '选择生成帖子的语言',
-        english: '英语',
-        chinese: '中文'
+        generateInEnglish: '用英语生成',
+        generateInChinese: '用中文生成'
     }
 };
 
@@ -262,7 +262,9 @@ export const mealExperienceOptions: Record<Language, Record<string, Record<strin
             'Super friendly': 'Super friendly',
             Professional: 'Professional',
             Efficient: 'Efficient',
-            Slow: 'Slow'
+            Slow: 'Slow',
+            Rude: 'Rude',
+            Useless: 'Useless'
         },
         value: {
             'Great value': 'Great value',
@@ -276,7 +278,7 @@ export const mealExperienceOptions: Record<Language, Record<string, Record<strin
             'First time': '初次光临',
             Regular: '常客',
             Tourist: '游客',
-            'Date night': '约会之夜',
+            'Date night': '约会',
             'Work lunch': '工作午餐',
             Celebration: '庆祝'
         },
@@ -304,7 +306,9 @@ export const mealExperienceOptions: Record<Language, Record<string, Record<strin
             'Super friendly': '超级友好',
             Professional: '专业',
             Efficient: '高效',
-            Slow: '缓慢'
+            Slow: '缓慢',
+            Rude: '粗鲁',
+            Useless: '屁用没有'
         },
         value: {
             'Great value': '超值',

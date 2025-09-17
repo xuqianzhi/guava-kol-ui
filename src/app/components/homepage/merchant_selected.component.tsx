@@ -30,6 +30,17 @@ const MerchantSelected: React.FC = () => {
             initial[key] = '';
         });
 
+        // Set default selections using the keys from mealOptions
+        const englishOptions = getMealExperienceOptions(Language.ENGLISH);
+        initial['paceWait'] =
+            Object.keys(englishOptions.paceWait).find((key) => englishOptions.paceWait[key] === '10–20 min') || '';
+        initial['serviceFeel'] =
+            Object.keys(englishOptions.serviceFeel).find(
+                (key) => englishOptions.serviceFeel[key] === 'Super friendly'
+            ) || '';
+        initial['value'] =
+            Object.keys(englishOptions.value).find((key) => englishOptions.value[key] === 'Great value') || '';
+
         return initial;
     };
 
@@ -312,9 +323,7 @@ const MerchantSelected: React.FC = () => {
                         <CardTitle className='text-center text-2xl font-bold'>
                             {t.offerTitle} {merchantData?.merchants?.[0]?.name} {t.aPost}
                         </CardTitle>
-                        <CardDescription className='text-center'>
-                            {t.reviewsDescription} {merchantData?.merchants?.[0]?.name || 'this restaurant'}
-                        </CardDescription>
+                        <CardDescription className='text-center'>{t.reviewsDescription}</CardDescription>
                     </CardHeader>
                     <CardContent className='space-y-6'>
                         {/* Separator after title */}
@@ -467,13 +476,13 @@ const MerchantSelected: React.FC = () => {
                                     variant={generationLanguage === Language.ENGLISH ? 'default' : 'outline'}
                                     className='cursor-pointer px-3 py-2 text-sm hover:bg-gray-100'
                                     onClick={() => setGenerationLanguage(Language.ENGLISH)}>
-                                    {t.english}
+                                    {t.generateInEnglish}
                                 </Badge>
                                 <Badge
                                     variant={generationLanguage === Language.CHINESE ? 'default' : 'outline'}
                                     className='cursor-pointer px-3 py-2 text-sm hover:bg-gray-100'
                                     onClick={() => setGenerationLanguage(Language.CHINESE)}>
-                                    {t.chinese}
+                                    {t.generateInChinese}
                                 </Badge>
                             </div>
                         </div>
