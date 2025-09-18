@@ -13,6 +13,11 @@ export interface GetMerchantsResponse {
     merchants: Merchant[];
     count: number;
     filtered: boolean;
+    pagination?: {
+        has_more: boolean;
+        next_cursor: string | null;
+        limit: number;
+    };
 }
 
 export interface DishReview {

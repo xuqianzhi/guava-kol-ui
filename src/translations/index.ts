@@ -73,6 +73,29 @@ export interface Translations {
     selectGenerationLanguage: string;
     generateInEnglish: string;
     generateInChinese: string;
+
+    // Merchant onboarding
+    merchantOnboardingTitle: string;
+    merchantOnboardingDescription: string;
+    businessName: string;
+    businessEmail: string;
+    phoneNumber: string;
+    businessAddress: string;
+    industry: string;
+    businessDescription: string;
+    submitOnboardingRequest: string;
+    submittingApplication: string;
+    applicationSubmittedTitle: string;
+    applicationSubmittedDescription: string;
+    onboardingErrorNetwork: string;
+    onboardingErrorDefault: string;
+    backToMerchants: string;
+    selectYourIndustry: string;
+    businessNamePlaceholder: string;
+    businessEmailPlaceholder: string;
+    phoneNumberPlaceholder: string;
+    businessAddressPlaceholder: string;
+    businessDescriptionPlaceholder: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -149,7 +172,33 @@ const translations: Record<Language, Translations> = {
         generationLanguage: 'Post Language',
         selectGenerationLanguage: 'Select the language for your generated post',
         generateInEnglish: 'Generate in English',
-        generateInChinese: 'Generate in Chinese'
+        generateInChinese: 'Generate in Chinese',
+
+        // Merchant onboarding
+        merchantOnboardingTitle: 'Merchant Onboarding Request',
+        merchantOnboardingDescription:
+            "Fill out the form below to request onboarding to Guava AI. We'll review your application and get back to you within 24 hours.",
+        businessName: 'Business Name',
+        businessEmail: 'Business Email',
+        phoneNumber: 'Phone Number',
+        businessAddress: 'Business Address',
+        industry: 'Industry',
+        businessDescription: 'Business Description',
+        submitOnboardingRequest: 'Submit Onboarding Request',
+        submittingApplication: 'Submitting Application...',
+        applicationSubmittedTitle: 'Application Submitted Successfully!',
+        applicationSubmittedDescription:
+            "Thank you for your interest in joining our platform. We'll review your application and contact you soon.",
+        onboardingErrorNetwork: 'Network error. Please check your connection and try again.',
+        onboardingErrorDefault: 'Failed to submit application. Please try again.',
+        backToMerchants: 'Back to Merchants',
+        selectYourIndustry: 'Select your industry',
+        businessNamePlaceholder: 'e.g., Yuzu',
+        businessEmailPlaceholder: 'e.g., service@ecocleaningco.com',
+        phoneNumberPlaceholder: 'e.g., +1-206-555-0808',
+        businessAddressPlaceholder: 'e.g., 741 Green Street, Seattle, WA 98101',
+        businessDescriptionPlaceholder:
+            'Providing a detailed description helps AI better generating customized contents'
     },
 
     [Language.CHINESE]: {
@@ -223,7 +272,30 @@ const translations: Record<Language, Translations> = {
         generationLanguage: '帖子语言',
         selectGenerationLanguage: '选择生成帖子的语言',
         generateInEnglish: '用英语生成',
-        generateInChinese: '用中文生成'
+        generateInChinese: '用中文生成',
+
+        // Merchant onboarding
+        merchantOnboardingTitle: '商家入驻申请',
+        merchantOnboardingDescription: '请填写以下表格申请加入Guava AI平台。我们将审核您的申请并在24小时内回复您。',
+        businessName: '商家名称',
+        businessEmail: '商家邮箱',
+        phoneNumber: '电话号码',
+        businessAddress: '商家地址',
+        industry: '行业',
+        businessDescription: '商家描述',
+        submitOnboardingRequest: '提交入驻申请',
+        submittingApplication: '提交申请中...',
+        applicationSubmittedTitle: '申请提交成功！',
+        applicationSubmittedDescription: '感谢您有兴趣加入我们的平台。我们将审核您的申请并尽快与您联系。',
+        onboardingErrorNetwork: '网络错误。请检查您的连接后重试。',
+        onboardingErrorDefault: '提交申请失败。请重试。',
+        backToMerchants: '返回商家列表',
+        selectYourIndustry: '选择您的行业',
+        businessNamePlaceholder: '例如：柚子餐厅',
+        businessEmailPlaceholder: '例如：service@yuzu.com',
+        phoneNumberPlaceholder: '例如：+86-138-0013-8000',
+        businessAddressPlaceholder: '例如：北京市朝阳区建国门外大街1号',
+        businessDescriptionPlaceholder: '提供详细描述有助于AI生成更个性化的内容'
     }
 };
 
