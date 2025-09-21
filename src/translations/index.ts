@@ -6,6 +6,8 @@ export interface Translations {
     offerTitle: string;
     reviewsDescription: string;
     aPost: string;
+    demoPageTitle: string;
+    demoPageDescription: string;
 
     // Loading and error states
     loadingMerchant: string;
@@ -89,7 +91,6 @@ export interface Translations {
     applicationSubmittedDescription: string;
     onboardingErrorNetwork: string;
     onboardingErrorDefault: string;
-    backToMerchants: string;
     selectYourIndustry: string;
     businessNamePlaceholder: string;
     businessEmailPlaceholder: string;
@@ -104,6 +105,8 @@ const translations: Record<Language, Translations> = {
         offerTitle: 'Offer',
         reviewsDescription: 'Guava AI helps generate a post with a few clicks',
         aPost: 'a Post',
+        demoPageTitle: 'Welcome to Guava AI Demo',
+        demoPageDescription: 'Your Restaurant Customers Can Generate Social Media Post for You with Just a few Clicks!',
 
         // Loading and error states
         loadingMerchant: 'Loading merchant information...',
@@ -191,7 +194,6 @@ const translations: Record<Language, Translations> = {
             "Thank you for your interest in joining our platform. We'll review your application and contact you soon.",
         onboardingErrorNetwork: 'Network error. Please check your connection and try again.',
         onboardingErrorDefault: 'Failed to submit application. Please try again.',
-        backToMerchants: 'Back to Merchants',
         selectYourIndustry: 'Select your industry',
         businessNamePlaceholder: 'e.g., Yuzu',
         businessEmailPlaceholder: 'e.g., service@ecocleaningco.com',
@@ -206,6 +208,8 @@ const translations: Record<Language, Translations> = {
         offerTitle: '给',
         reviewsDescription: 'Guava AI帮您小小点击就能获得大大文案',
         aPost: '写一篇帖子',
+        demoPageTitle: '欢迎试用Guava AI',
+        demoPageDescription: '来看看如何让您餐厅的客人一键帮您生成Social Media帖子',
 
         // Loading and error states
         loadingMerchant: '正在加载商家信息...',
@@ -289,7 +293,6 @@ const translations: Record<Language, Translations> = {
         applicationSubmittedDescription: '感谢您有兴趣加入我们的平台。我们将审核您的申请并尽快与您联系。',
         onboardingErrorNetwork: '网络错误。请检查您的连接后重试。',
         onboardingErrorDefault: '提交申请失败。请重试。',
-        backToMerchants: '返回商家列表',
         selectYourIndustry: '选择您的行业',
         businessNamePlaceholder: '例如：柚子餐厅',
         businessEmailPlaceholder: '例如：service@yuzu.com',

@@ -4,8 +4,8 @@ import { Suspense } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
-import MerchantList from '@/app/components/homepage/merchant_list.component';
-import MerchantSelected from '@/app/components/homepage/merchant_selected.component';
+import MerchantList from '@/components/homepage/merchant_list.component';
+import MerchantSelected from '@/components/homepage/merchant_selected.component';
 
 /**
  * Loading component for the suspense fallback

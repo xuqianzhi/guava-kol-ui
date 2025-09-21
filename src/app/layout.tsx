@@ -5,8 +5,8 @@ import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
 
-import NavigationBar from '@/app/components/NavigationBar';
 import '@/app/globals.css';
+import NavigationBar from '@/components/common/NavigationBar';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { Toaster } from '@/registry/new-york-v4/ui/sonner';
 

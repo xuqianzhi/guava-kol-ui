@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 
-import Link from 'next/link';
-
 import { API_BASE_URL } from '@/common/constants';
+import { BackButton } from '@/components/common/back_button.component';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/registry/new-york-v4/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/registry/new-york-v4/ui/card';
@@ -94,19 +93,7 @@ const MerchantOnboarding: React.FC = () => {
         <main className='mx-auto mt-6 flex max-w-4xl flex-col justify-center gap-6 px-3 pb-8 font-[family-name:var(--font-geist-sans)] sm:mt-3 sm:gap-12 sm:px-0'>
             {/* Header with Back Button */}
             <div className='flex w-full items-center justify-between'>
-                <Link href='/'>
-                    <Button variant='outline' className='flex items-center gap-2'>
-                        <svg
-                            className='h-4 w-4'
-                            fill='none'
-                            stroke='currentColor'
-                            viewBox='0 0 24 24'
-                            xmlns='http://www.w3.org/2000/svg'>
-                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
-                        </svg>
-                        {t.backToMerchants}
-                    </Button>
-                </Link>
+                <BackButton href='/merchant-demo' />
             </div>
 
             <Card className='w-full'>
